@@ -8,9 +8,12 @@
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   position: relative;
   min-height: 100dvh;
   font-family: "Roboto", sans-serif;
-  padding: 10px;
 }

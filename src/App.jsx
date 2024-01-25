@@ -1,12 +1,22 @@
-import React from "react";
 import Home from "./pages/Home";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./pages/Layout";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <React.Fragment>
-      <Home />
-    </React.Fragment>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
