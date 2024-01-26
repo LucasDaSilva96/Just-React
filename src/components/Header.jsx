@@ -22,10 +22,7 @@ function Header() {
         <NavLink className="text-lg transition-all hover:underline">
           Contact
         </NavLink>
-        <NavLink
-          to="sign-in"
-          className="text-lg transition-all hover:underline"
-        >
+        <NavLink to="auth" className="text-lg transition-all hover:underline">
           Sign in
         </NavLink>
         <NavLink className="text-lg transition-all">
