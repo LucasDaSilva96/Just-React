@@ -6,10 +6,11 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-import toast from "react-hot-toast";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDpZiSgkky0PIMfLmLM2jVOQOmk8WTNtFg",
@@ -75,3 +76,8 @@ export const signInWith_EmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
 };
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);

@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { UserContext } from "../contexts/user.context";
+import { signOutUser } from "../utils/firebase/firebase.utils";
 
 function Header() {
+  const { currentUser } = useContext(UserContext);
   const [hasItem, setItems] = useState(true);
+
+  const signOutHandler = async () => {
+    await signOutUser();
+  };
+
   return (
     <header className="w-full flex items-center py-2 bg-[#a3b18a6c] px-2 shadow-md">
       <aside>
@@ -22,9 +30,19 @@ function Header() {
         <NavLink className="text-lg transition-all hover:underline">
           Contact
         </NavLink>
-        <NavLink to="auth" className="text-lg transition-all hover:underline">
-          Sign in
-        </NavLink>
+        {!currentUser ? (
+          <NavLink to="auth" className="text-lg transition-all hover:underline">
+            Sign in
+          </NavLink>
+        ) : (
+          <NavLink
+            to="auth"
+            className="text-lg transition-all hover:underline"
+            onClick={signOutHandler}
+          >
+            Sign out
+          </NavLink>
+        )}
         <NavLink className="text-lg transition-all">
           <div className="relative">
             <svg

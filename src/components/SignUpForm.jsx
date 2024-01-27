@@ -38,6 +38,7 @@ function SignUpForm() {
       );
 
       await createUserDocumentFromAuth(user, { displayName });
+
       toast.success("Account successfully created");
       resetFormFields();
     } catch (error) {

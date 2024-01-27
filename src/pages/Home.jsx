@@ -8,12 +8,15 @@ function Home() {
         <h1 className="text-center text-3xl font-black py-2 underline">
           Step into style with Just React
         </h1>
+        <h2 className="text-xl text-center  font-semibold">
+          Where fashion meets comfort!
+        </h2>
         <p className="max-w-[650px] text-lg tracking-wide leading-7 py-2">
           <em>
-            Where fashion meets comfort! Explore our curated collection of
-            trendy clothes and shoes designed to elevate your wardrobe. Unleash
-            your individuality and shop the latest in fashion effortlessly.
-            Click, browse, and Just React to your new style journey now!
+            Explore our curated collection of trendy clothes and shoes designed
+            to elevate your wardrobe. Unleash your individuality and shop the
+            latest in fashion effortlessly. Click, browse, and Just React to
+            your new style journey now!
           </em>
         </p>
       </div>

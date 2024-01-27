@@ -20,9 +20,7 @@ function SignInForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
-    console.log(userDocRef);
+    await signInWithGooglePopup();
   };
 
   const handleChange = (event) => {
@@ -39,7 +37,6 @@ function SignInForm() {
     try {
       setIsLoading(true);
       const { user } = await signInWith_EmailAndPassword(email, password);
-      console.log(user);
       resetFormFields();
     } catch (error) {
       toast.error(error.code.split("/")[1]);
