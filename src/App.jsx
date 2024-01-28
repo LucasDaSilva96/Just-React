@@ -5,6 +5,7 @@ import SignIn from "./pages/SignIn";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import Shop from "./pages/Shop";
+import CheckOut from "./pages/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "shop",
         element: <Shop />,
+      },
+      {
+        path: "checkout",
+        element: <CheckOut />,
       },
     ],
   },

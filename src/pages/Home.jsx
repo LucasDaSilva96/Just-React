@@ -3,7 +3,7 @@ import CategoryBox from "../components/Category-Box";
 
 function Home() {
   return (
-    <div className="px-2 flex flex-col w-full items-center gap-2">
+    <section className="px-2 flex flex-col w-full items-center gap-2">
       <div>
         <h1 className="text-center text-3xl font-black py-2 underline">
           Step into style with Just React
@@ -24,7 +24,7 @@ function Home() {
         {DATA.length > 0 &&
           DATA.map((title) => <CategoryBox data={title} key={title.id} />)}
       </div>
-    </div>
+    </section>
   );
 }
 

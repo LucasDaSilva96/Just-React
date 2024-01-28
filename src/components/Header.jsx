@@ -11,7 +11,7 @@ function Header() {
 
   const { open, setOpen } = useContext(ToggleCartContext);
 
-  const { cartItems } = useContext(CartContext);
+  const { cartQuantity } = useContext(CartContext);
 
   const signOutHandler = async () => {
     await signOutUser();
@@ -30,7 +30,7 @@ function Header() {
       </aside>
 
       <nav className=" ml-[auto] pr-2 flex gap-6 items-center ">
-        <NavLink to="shop" className="text-lg transition-all hover:underline">
+        <NavLink to="shop" className="text-lg transition-all hover:underline ">
           Shop
         </NavLink>
         <NavLink className="text-lg transition-all hover:underline">
@@ -63,9 +63,9 @@ function Header() {
             >
               <path d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H80V96a8,8,0,0,0,16,0V80h64V96a8,8,0,0,0,16,0V80h40Z"></path>
             </svg>
-            {cartItems.length > 0 && (
+            {cartQuantity > 0 && (
               <span className="absolute top-[53%] right-[50%] translate-y-[-50%] translate-x-[50%] text-base font-semibold">
-                {cartItems.length}
+                {cartQuantity}
               </span>
             )}
           </div>

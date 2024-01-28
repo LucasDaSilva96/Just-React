@@ -28,6 +28,11 @@ body {
   overflow-x: hidden;
 }
 
+.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 /* HTML: <div class="loader"></div> */
 .loader {
   width: 50px;
