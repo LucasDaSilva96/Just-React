@@ -6,7 +6,7 @@ const BUTTON_TYPE_CLASSES = {
 function Button({ children, buttonType, ...otherProps }) {
   return (
     <button
-      className={`py-2 px-6 rounded capitalize transition-all hover:bg-white hover:text-black ${BUTTON_TYPE_CLASSES[buttonType]}`}
+      className={`py-2 px-6 rounded capitalize transition-all  hover:bg-white hover:text-black ${BUTTON_TYPE_CLASSES[buttonType]}`}
       {...otherProps}
     >
       {children}

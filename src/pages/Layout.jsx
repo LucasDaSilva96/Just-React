@@ -6,7 +6,9 @@ function Layout() {
     <div className="w-full min-h-[100dvh] bg-[#dad7cd] flex flex-col gap-3">
       <Header />
 
-      <Outlet />
+      <div className="mt-[80px]">
+        <Outlet />
+      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Layout from "./pages/Layout";
 import SignIn from "./pages/SignIn";
 import React from "react";
 import { Toaster } from "react-hot-toast";
+import Shop from "./pages/Shop";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "auth",
         element: <SignIn />,
+      },
+      {
+        path: "shop",
+        element: <Shop />,
       },
     ],
   },

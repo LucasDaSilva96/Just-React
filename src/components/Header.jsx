@@ -2,17 +2,23 @@ import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { UserContext } from "../contexts/user.context";
 import { signOutUser } from "../utils/firebase/firebase.utils";
+import CartSidebar from "./CartSidebar";
+import { ToggleCartContext } from "../contexts/toggleCartOpen.context";
+import { CartContext } from "../contexts/cart.contex";
 
 function Header() {
   const { currentUser } = useContext(UserContext);
-  const [hasItem, setItems] = useState(true);
+
+  const { open, setOpen } = useContext(ToggleCartContext);
+
+  const { cartItems } = useContext(CartContext);
 
   const signOutHandler = async () => {
     await signOutUser();
   };
 
   return (
-    <header className="w-full flex items-center py-2 bg-[#a3b18a6c] px-2 shadow-md">
+    <header className="w-full flex items-center py-2 bg-[#a3b18a6c] px-2 shadow-md z-40 fixed backdrop-blur-md">
       <aside>
         <Link to="/">
           <img
@@ -23,8 +29,8 @@ function Header() {
         </Link>
       </aside>
 
-      <nav className=" ml-[auto] pr-2 flex gap-6 items-center">
-        <NavLink className="text-lg transition-all hover:underline">
+      <nav className=" ml-[auto] pr-2 flex gap-6 items-center ">
+        <NavLink to="shop" className="text-lg transition-all hover:underline">
           Shop
         </NavLink>
         <NavLink className="text-lg transition-all hover:underline">
@@ -43,7 +49,10 @@ function Header() {
             Sign out
           </NavLink>
         )}
-        <NavLink className="text-lg transition-all">
+        <div
+          className="text-lg transition-all z-[60] cursor-pointer"
+          onClick={() => setOpen((e) => !e)}
+        >
           <div className="relative">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,14 +63,15 @@ function Header() {
             >
               <path d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H80V96a8,8,0,0,0,16,0V80h64V96a8,8,0,0,0,16,0V80h40Z"></path>
             </svg>
-            {hasItem && (
-              <span className="absolute top-[10px] left-[14px] text-base font-semibold">
-                1
+            {cartItems.length > 0 && (
+              <span className="absolute top-[53%] right-[50%] translate-y-[-50%] translate-x-[50%] text-base font-semibold">
+                {cartItems.length}
               </span>
             )}
           </div>
-        </NavLink>
+        </div>
       </nav>
+      <CartSidebar slide={open} />
     </header>
   );
 }
