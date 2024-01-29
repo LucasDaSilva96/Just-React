@@ -11,9 +11,9 @@ function AllCategories() {
         <React.Fragment key={el}>
           <h1 className="px-4 pl-6 font-black text-3xl ">{el.toUpperCase()}</h1>
           <div className="w-full flex flex-wrap gap-4 px-4 py-2">
-            {categories[el].map((item) => (
-              <ShopItemBox data={item} key={item.id} />
-            ))}
+            {categories[el].map(
+              (item, i) => i < 4 && <ShopItemBox data={item} key={item.id} />
+            )}
           </div>
         </React.Fragment>
       ))}

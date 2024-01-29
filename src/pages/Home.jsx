@@ -1,9 +1,9 @@
 import DATA from "../api/categories.json";
-import CategoryBox from "../components/Category-Box";
+import CategoryBox, { CategoryBoxBig } from "../components/Category-Box";
 
 function Home() {
   return (
-    <section className="px-2 flex flex-col w-full items-center gap-2">
+    <section className="px-2 flex flex-col w-full items-center gap-2 pb-10">
       <div>
         <h1 className="text-center text-3xl font-black py-2 underline">
           Step into style with Just React
@@ -22,7 +22,18 @@ function Home() {
       </div>
       <div className="flex flex-wrap gap-3 min-w-[375px] max-w-[1200px] self-center pb-5 pl-1  ">
         {DATA.length > 0 &&
-          DATA.map((title) => <CategoryBox data={title} key={title.id} />)}
+          DATA.map((item) => {
+            if (item.title !== "mens" && item.title !== "womens")
+              return <CategoryBox data={item} key={item.id} />;
+          })}
+      </div>
+
+      <div className="flex flex-wrap gap-6 min-w-[375px] max-w-[1200px]">
+        {DATA.length > 0 &&
+          DATA.map((item) => {
+            if (item.title === "mens" || item.title === "womens")
+              return <CategoryBoxBig data={item} key={item.id} />;
+          })}
       </div>
     </section>
   );

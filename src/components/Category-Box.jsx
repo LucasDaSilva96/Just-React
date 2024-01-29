@@ -14,4 +14,22 @@ function CategoryBox({ data }) {
   );
 }
 
+export function CategoryBoxBig({ data }) {
+  return (
+    <Link to={`shop/${data.title}`}>
+      <div className=" min-w-[200px] relative cursor-pointer transition-all hover:scale-105 ">
+        <img
+          src={data.imageUrl}
+          alt={data.title}
+          className="rounded-lg max-w-[400px] min-w-[300px] h-[300px]"
+        />
+
+        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] py-2 px-4 backdrop-blur-md bg-[#ffffffbe] rounded">
+          <h1 className="capitalize font-bold">{data.title}</h1>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default CategoryBox;

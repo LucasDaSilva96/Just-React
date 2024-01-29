@@ -4,7 +4,7 @@ const BUTTON_TYPE_CLASSES = {
   inverted:
     "py-4 px-6 rounded capitalize transition-all  hover:bg-white hover:text-black text-slate-50 bg-black ",
   danger:
-    "py-2 px-6 rounded capitalize transition-all  hover:bg-white hover:text-black text-slate-50 bg-[#e63946]",
+    "py-2 px-6 rounded capitalize transition-all  hover:bg-white hover:text-black text-slate-50 bg-[#e63946] mt-auto",
 };
 
 function Button({ children, buttonType, ...otherProps }) {

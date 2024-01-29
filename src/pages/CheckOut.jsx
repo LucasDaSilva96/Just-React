@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { CartContext } from "../contexts/cart.contex";
 import ShopItemCheckOutBox from "../components/ShopItemCheckOutBox";
+import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 function CheckOut() {
   const {
@@ -11,8 +13,17 @@ function CheckOut() {
     removeSelectedCartItem,
   } = useContext(CartContext);
 
+  const navigate = useNavigate();
+
   if (totalCartPrice < 1)
-    return <h1 className="text-center text-2xl">Empty</h1>;
+    return (
+      <div className="flex flex-col gap-3 px-8">
+        <h1 className="text-center text-2xl">Your cart is empty</h1>
+        <Button buttonType="inverted" onClick={() => navigate("/shop")}>
+          Go to the shop
+        </Button>
+      </div>
+    );
 
   return (
     <div className="px-4 flex flex-col ">

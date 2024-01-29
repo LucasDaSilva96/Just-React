@@ -7,7 +7,7 @@ function CartItemSidebar() {
     useContext(CartContext);
 
   if (cartItems.length < 1)
-    return <h1 className="text-center text-2xl">Empty</h1>;
+    return <h1 className="text-center text-2xl">Your cart is empty</h1>;
 
   return (
     <div className="flex flex-col gap-3 px-2">
