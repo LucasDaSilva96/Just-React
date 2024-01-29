@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function CategoryBox({ data }) {
   return (
-    <Link>
+    <Link to={`shop/${data.title}`}>
       <div className="max-w-[370px] min-w-[200px] relative cursor-pointer transition-all hover:scale-105 ">
         <img src={data.imageUrl} alt={data.title} className="rounded-lg" />
 

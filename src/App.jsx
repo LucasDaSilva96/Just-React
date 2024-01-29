@@ -6,6 +6,9 @@ import React from "react";
 import { Toaster } from "react-hot-toast";
 import Shop from "./pages/Shop";
 import CheckOut from "./pages/CheckOut";
+import Contact from "./pages/Contact";
+import AllCategories from "./components/AllCategories";
+import SelectedCategoryContainer from "./components/SelectedCategoryContainer";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,20 @@ const router = createBrowserRouter([
       {
         path: "shop",
         element: <Shop />,
+        children: [
+          {
+            index: true,
+            element: <AllCategories />,
+          },
+          {
+            path: ":category",
+            element: <SelectedCategoryContainer />,
+          },
+        ],
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
       {
         path: "checkout",

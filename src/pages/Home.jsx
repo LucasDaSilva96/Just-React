@@ -20,7 +20,7 @@ function Home() {
           </em>
         </p>
       </div>
-      <div className="flex flex-wrap gap-3 min-w-[375px] max-w-[1200px] self-center pb-5  ">
+      <div className="flex flex-wrap gap-3 min-w-[375px] max-w-[1200px] self-center pb-5 pl-1  ">
         {DATA.length > 0 &&
           DATA.map((title) => <CategoryBox data={title} key={title.id} />)}
       </div>

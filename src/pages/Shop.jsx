@@ -1,22 +1,29 @@
 import { useContext } from "react";
-
-import ShopItemBox from "../components/ShopItemBox";
-import { ProductContext } from "../contexts/products.context";
+import { CategoriesContext } from "../contexts/categories.context";
+import ScrollToTopButton from "../components/ScrollToTopButton";
+import { NavLink, Outlet } from "react-router-dom";
 
 function Shop() {
-  const { products } = useContext(ProductContext);
+  const { categories } = useContext(CategoriesContext);
 
-  if (!products) return <h1 className="text-3xl font-bold">Loading...</h1>;
+  if (!categories) return <h1 className="text-3xl font-bold">Empty</h1>;
 
   return (
-    <div className="">
-      <h1 className="px-4 font-black text-2xl">Category</h1>
-      <div className="w-full flex flex-wrap gap-4 px-4 py-2">
-        {products.map((item) => (
-          <ShopItemBox data={item} key={item.id} />
+    <section>
+      <div className="w-full flex flex-wrap items-center gap-4 px-6 pt-2 pb-8 capitalize">
+        <NavLink to="/shop" end className="underline text-lg">
+          All
+        </NavLink>
+        {Object.keys(categories).map((el) => (
+          <NavLink key={el} to={el.toLowerCase()} className="underline text-lg">
+            {el}
+          </NavLink>
         ))}
       </div>
-    </div>
+
+      <Outlet />
+      <ScrollToTopButton />
+    </section>
   );
 }
 

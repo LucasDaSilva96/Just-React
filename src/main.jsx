@@ -3,13 +3,14 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { UserProvider } from "./contexts/user.context.jsx";
-import { ProductProvider } from "./contexts/products.context.jsx";
+
 import { ToggleCartProvider } from "./contexts/toggleCartOpen.context.jsx";
 import { CartContextProvider } from "./contexts/cart.contex.jsx";
+import { CategoriesProvider } from "./contexts/categories.context.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ProductProvider>
+    <CategoriesProvider>
       <UserProvider>
         <CartContextProvider>
           <ToggleCartProvider>
@@ -17,6 +18,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </ToggleCartProvider>
         </CartContextProvider>
       </UserProvider>
-    </ProductProvider>
+    </CategoriesProvider>
   </React.StrictMode>
 );

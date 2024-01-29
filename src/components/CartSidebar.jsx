@@ -25,7 +25,7 @@ function CartSidebar({ slide }) {
         !slide ? "translate-x-[1200px]" : "translate-x-0"
       } flex flex-col gap-4 `}
     >
-      <div className="w-full  mt-[62px] h-[500px] overflow-y-scroll">
+      <div className="w-full  mt-[62px]  max-h-[400px] lg:max-h-[500px] overflow-y-scroll">
         <CartItemSidebar />
       </div>
 

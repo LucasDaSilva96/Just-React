@@ -33,7 +33,10 @@ function Header() {
         <NavLink to="shop" className="text-lg transition-all hover:underline ">
           Shop
         </NavLink>
-        <NavLink className="text-lg transition-all hover:underline">
+        <NavLink
+          to="contact"
+          className="text-lg transition-all hover:underline"
+        >
           Contact
         </NavLink>
         {!currentUser ? (
