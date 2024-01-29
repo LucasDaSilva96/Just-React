@@ -6,12 +6,12 @@ function CartItemSidebar() {
   const { cartItems, addItemToCart, removeItemFromCart } =
     useContext(CartContext);
 
-  if (cartItems.length < 1)
+  if (cartItems?.length < 1)
     return <h1 className="text-center text-2xl">Your cart is empty</h1>;
 
   return (
     <div className="flex flex-col gap-3 px-2">
-      {cartItems.map((item) => (
+      {cartItems?.map((item) => (
         <ShopItemSmallBox
           item={item}
           key={item.id}
