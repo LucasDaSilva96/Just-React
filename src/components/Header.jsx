@@ -53,7 +53,7 @@ function Header() {
           </NavLink>
         )}
         <div
-          className="text-lg transition-all z-[60] cursor-pointer"
+          className="text-lg transition-all z-[150] cursor-pointer"
           onClick={() => setOpen((e) => !e)}
         >
           <div className="relative">

@@ -9,6 +9,7 @@ function CartSidebar({ slide }) {
   const { totalCartPrice, clearCartItems } = useContext(CartContext);
   const { setOpen } = useContext(ToggleCartContext);
   const navigate = useNavigate();
+
   function handleClick() {
     navigate("checkout");
     setOpen(false);
@@ -20,11 +21,11 @@ function CartSidebar({ slide }) {
 
   return (
     <aside
-      className={`absolute top-0 right-0 transition-all bg-[#b7b9b2] backdrop-blur-xl w-[375px] h-[100dvh] z-[54] ${
+      className={`absolute top-0 right-0 transition-all backdrop-blur-2xl w-[375px] h-[100dvh] z-[100] bg-[#c9d6c9] ${
         !slide ? "translate-x-[1200px]" : "translate-x-0"
       } flex flex-col gap-4 overflow-y-scroll justify-between `}
     >
-      <div className="w-full  mt-[62px]   max-h-[400px] overflow-y-scroll">
+      <div className="w-full mt-[62px] max-h-[450px]  overflow-y-scroll">
         <CartItemSidebar />
       </div>
 
@@ -47,3 +48,5 @@ function CartSidebar({ slide }) {
 }
 
 export default CartSidebar;
+
+// bg-[#b7b9b2]
