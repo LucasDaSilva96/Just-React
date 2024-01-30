@@ -28,7 +28,7 @@ function CheckOut() {
   return (
     <div className="px-4 flex flex-col ">
       <h1 className="font-black text-3xl text-center pb-3">Checkout</h1>
-      <div className=" max-h-[500px] overflow-y-scroll">
+      <div className=" max-h-[70dvh] overflow-y-scroll">
         {cartItems.map((item) => (
           <ShopItemCheckOutBox
             item={item}

@@ -1,13 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { UserContext } from "../contexts/user.context";
 import { signOutUser } from "../utils/firebase/firebase.utils";
 import CartSidebar from "./CartSidebar";
 import { ToggleCartContext } from "../contexts/toggleCartOpen.context";
 import { CartContext } from "../contexts/cart.contex";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../store/user/user-selector";
 
 function Header() {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
 
   const { open, setOpen } = useContext(ToggleCartContext);
 

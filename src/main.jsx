@@ -7,17 +7,19 @@ import { UserProvider } from "./contexts/user.context.jsx";
 import { ToggleCartProvider } from "./contexts/toggleCartOpen.context.jsx";
 import { CartContextProvider } from "./contexts/cart.contex.jsx";
 import { CategoriesProvider } from "./contexts/categories.context.jsx";
+import { Provider } from "react-redux";
+import { store } from "./store/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CategoriesProvider>
-      <UserProvider>
+    <Provider store={store}>
+      <CategoriesProvider>
         <CartContextProvider>
           <ToggleCartProvider>
             <App />
           </ToggleCartProvider>
         </CartContextProvider>
-      </UserProvider>
-    </CategoriesProvider>
+      </CategoriesProvider>
+    </Provider>
   </React.StrictMode>
 );

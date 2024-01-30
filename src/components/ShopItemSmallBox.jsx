@@ -3,8 +3,8 @@ import Increase_DecreaseItemButton from "./Increase&DecreaseItemButton";
 function ShopItemSmallBox({ item, addItemToCart, removeItemFromCart }) {
   const { id, imageUrl, name, price, quantity } = item;
   return (
-    <article className="flex gap-6 bg-[#ffffffd7] rounded overflow-hidden border border-[#000]">
-      <img src={imageUrl} name={name} className="max-w-[80px]" />
+    <article className="flex gap-6 bg-transparent rounded overflow-hidden border border-[#ffffff] py-1 px-1 shadow-md">
+      <img src={imageUrl} name={name} className="max-w-[80px] rounded" />
 
       <div className=" flex gap-6 w-full pr-2">
         <div className="self-center">
