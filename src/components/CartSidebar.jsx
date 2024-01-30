@@ -9,7 +9,6 @@ function CartSidebar({ slide }) {
   const { totalCartPrice, clearCartItems } = useContext(CartContext);
   const { setOpen } = useContext(ToggleCartContext);
   const navigate = useNavigate();
-
   function handleClick() {
     navigate("checkout");
     setOpen(false);
