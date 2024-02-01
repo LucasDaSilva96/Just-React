@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { addCartItem } from "../store/cart/cart-action";
+import { cartItemsArray } from "../store/cart/cart-selector";
+import { CART_ACTION_TYPES } from "../store/cart/cart-types";
 import Button from "./Button";
-import { CartContext } from "../contexts/cart.contex";
+import { useDispatch, useSelector } from "react-redux";
 
 function ShopItemBox({ data }) {
   const { imageUrl, name, price } = data;
-  const { addItemToCart } = useContext(CartContext);
+
+  const dispatch = useDispatch();
+  const cartItems = useSelector(cartItemsArray);
 
   return (
     <article className="max-w-[370px] transition-all hover:shadow-lg pb-2 flex flex-col gap-2 justify-between border-transparent hover:border-black border-2 py-2 px-2">
@@ -20,7 +24,10 @@ function ShopItemBox({ data }) {
       <Button
         buttonType="inverted"
         onClick={() => {
-          addItemToCart(data);
+          dispatch({
+            type: CART_ACTION_TYPES.SET_CART_ITEMS,
+            payload: addCartItem(cartItems, data),
+          });
         }}
       >
         Add to cart

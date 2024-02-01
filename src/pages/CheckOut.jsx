@@ -1,19 +1,19 @@
-import { useContext } from "react";
-import { CartContext } from "../contexts/cart.contex";
 import ShopItemCheckOutBox from "../components/ShopItemCheckOutBox";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { cartItemsArray, cartTotal } from "../store/cart/cart-selector";
+import {
+  addCartItem,
+  removeItem,
+  removeSelectedItem,
+} from "../store/cart/cart-action";
 
 function CheckOut() {
-  const {
-    cartItems,
-    addItemToCart,
-    removeItemFromCart,
-    totalCartPrice,
-    removeSelectedCartItem,
-  } = useContext(CartContext);
-
   const navigate = useNavigate();
+
+  const totalCartPrice = useSelector(cartTotal);
+  const cartItems = useSelector(cartItemsArray);
 
   if (totalCartPrice < 1)
     return (
@@ -32,9 +32,9 @@ function CheckOut() {
         {cartItems.map((item) => (
           <ShopItemCheckOutBox
             item={item}
-            addItemToCart={addItemToCart}
-            removeItemFromCart={removeItemFromCart}
-            removeSelectedCartItem={removeSelectedCartItem}
+            addItemToCart={addCartItem}
+            removeItemFromCart={removeItem}
+            removeSelectedCartItem={removeSelectedItem}
             key={item.id}
           />
         ))}

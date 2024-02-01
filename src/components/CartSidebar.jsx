@@ -1,22 +1,23 @@
-import { useContext } from "react";
 import Button from "./Button";
 import CartItemSidebar from "./CartItemSidebar";
-import { CartContext } from "../contexts/cart.contex";
 import { useNavigate } from "react-router-dom";
-import { ToggleCartContext } from "../contexts/toggleCartOpen.context";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsCartOpen } from "../store/cart/cart-action";
+import { CART_ACTION_TYPES } from "../store/cart/cart-types";
+import { cartTotal } from "../store/cart/cart-selector";
 
 function CartSidebar({ slide }) {
-  const { totalCartPrice, clearCartItems } = useContext(CartContext);
-  const { setOpen } = useContext(ToggleCartContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const totalCartPrice = useSelector(cartTotal);
 
   function handleClick() {
     navigate("checkout");
-    setOpen(false);
+    setIsCartOpen(dispatch);
   }
 
   function handleClearCart() {
-    clearCartItems();
+    dispatch({ type: CART_ACTION_TYPES.SET_CART_EMPTY });
   }
 
   return (
@@ -48,5 +49,3 @@ function CartSidebar({ slide }) {
 }
 
 export default CartSidebar;
-
-// bg-[#b7b9b2]

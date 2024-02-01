@@ -1,5 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import Increase_DecreaseItemButton from "./Increase&DecreaseItemButton";
+import { cartItemsArray } from "../store/cart/cart-selector";
+import { CART_ACTION_TYPES } from "../store/cart/cart-types";
 
 function ShopItemCheckOutBox({
   item,
@@ -8,6 +11,8 @@ function ShopItemCheckOutBox({
   removeSelectedCartItem,
 }) {
   const { imageUrl, name, price, quantity } = item;
+  const dispatch = useDispatch();
+  const cartItems = useSelector(cartItemsArray);
   return (
     <article className="flex gap-6 py-4 overflow-hidden border-b-2 min-w-[300px]  max-w-[800px] relative">
       <img src={imageUrl} name={name} className="max-w-[150px] rounded " />
@@ -31,7 +36,12 @@ function ShopItemCheckOutBox({
         </p>
         <Button
           buttonType="danger"
-          onClick={() => removeSelectedCartItem(item)}
+          onClick={() =>
+            dispatch({
+              type: CART_ACTION_TYPES.SET_CART_ITEMS,
+              payload: removeSelectedCartItem(cartItems, item),
+            })
+          }
         >
           remove
         </Button>

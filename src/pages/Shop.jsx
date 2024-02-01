@@ -1,17 +1,29 @@
-import { useContext, useEffect } from "react";
-import { CategoriesContext } from "../contexts/categories.context";
+import { useEffect } from "react";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import { NavLink, Outlet } from "react-router-dom";
+import { setCategoriesArray } from "../store/categories/category-action";
+import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCategoriesMap } from "../store/categories/category-selector";
 
 function Shop() {
-  const { categories } = useContext(CategoriesContext);
+  const categories = useSelector(selectCategoriesMap);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > 100) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, []);
+
+    const getCategoriesMap = async () => {
+      const categoriesArray = await getCategoriesAndDocuments();
+
+      setCategoriesArray(categoriesArray, dispatch);
+    };
+    getCategoriesMap();
+  }, [dispatch]);
 
   if (!categories) return <h1 className="text-3xl font-bold">Empty</h1>;
 

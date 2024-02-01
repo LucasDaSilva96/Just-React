@@ -1,18 +1,20 @@
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { signOutUser } from "../utils/firebase/firebase.utils";
 import CartSidebar from "./CartSidebar";
-import { ToggleCartContext } from "../contexts/toggleCartOpen.context";
-import { CartContext } from "../contexts/cart.contex";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../store/user/user-selector";
+import { setIsCartOpen } from "../store/cart/cart-action";
+import { cartCount, selectIsCartOpen } from "../store/cart/cart-selector";
 
 function Header() {
   const currentUser = useSelector(selectCurrentUser);
 
-  const { open, setOpen } = useContext(ToggleCartContext);
+  const open = useSelector(selectIsCartOpen);
 
-  const { quantity } = useContext(CartContext);
+  const dispatch = useDispatch();
+
+  const quantity = useSelector(cartCount);
+  console.log(quantity);
 
   const signOutHandler = async () => {
     await signOutUser();
@@ -55,7 +57,7 @@ function Header() {
         )}
         <div
           className="text-lg transition-all z-[150] cursor-pointer"
-          onClick={() => setOpen((e) => !e)}
+          onClick={() => setIsCartOpen(dispatch)}
         >
           <div className="relative">
             <svg
