@@ -14,7 +14,6 @@ function Header() {
   const dispatch = useDispatch();
 
   const quantity = useSelector(cartCount);
-  console.log(quantity);
 
   const signOutHandler = async () => {
     await signOutUser();

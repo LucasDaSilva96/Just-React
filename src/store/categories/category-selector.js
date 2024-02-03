@@ -23,3 +23,13 @@ export const selectCategoriesMap = createSelector(
       return acc;
     }, {})
 );
+
+export const selectIsLoading = createSelector(
+  [selectCategoryReducer],
+  (categoriesSlice) => categoriesSlice.isLoading
+);
+
+export const selectError = createSelector(
+  [selectCategoryReducer],
+  (categoriesSlice) => categoriesSlice.error
+);
