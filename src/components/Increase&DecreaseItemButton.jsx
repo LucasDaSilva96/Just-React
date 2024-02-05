@@ -1,17 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-import { cartItemsArray } from "../store/cart/cart-selector";
-import { CART_ACTION_TYPES } from "../store/cart/cart-types";
+import { useDispatch } from "react-redux";
+import {
+  addItemToCart,
+  removeSelectedItemFromCart,
+} from "../store/cart/cart-reducer";
 
-function Increase_DecreaseItemButton({ item, handler, children }) {
+function Increase_DecreaseItemButton({ item, children, type }) {
   const dispatch = useDispatch();
-  const cartItems = useSelector(cartItemsArray);
   return (
     <button
       onClick={() =>
-        dispatch({
-          type: CART_ACTION_TYPES.SET_CART_ITEMS,
-          payload: handler(cartItems, item),
-        })
+        type === "add"
+          ? dispatch(addItemToCart(item))
+          : dispatch(removeSelectedItemFromCart(item))
       }
       className={
         children === "+"

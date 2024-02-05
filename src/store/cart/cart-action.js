@@ -1,5 +1,3 @@
-import { CART_ACTION_TYPES } from "./cart-types";
-
 export const addCartItem = (cartItems, productToAdd) => {
   const hasItem = cartItems.find((el) => el.id === productToAdd.id);
 
@@ -26,6 +24,3 @@ export const removeItem = (cartItems, product) => {
 export const removeSelectedItem = (cartItems, item) => {
   return cartItems.filter((el) => el.id !== item.id);
 };
-
-export const setIsCartOpen = (dispatch) =>
-  dispatch({ type: CART_ACTION_TYPES.SET_IS_CART_OPEN });

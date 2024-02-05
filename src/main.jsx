@@ -9,9 +9,9 @@ import Loader from "./components/Loader.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={<Loader />} persistor={persistor}>
-        <App />
-      </PersistGate>
+      {/* <PersistGate loading={<Loader />} persistor={persistor}> */}
+      <App />
+      {/* </PersistGate> */}
     </Provider>
   </React.StrictMode>
 );

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import { NavLink, Outlet } from "react-router-dom";
-import { fetchCategoriesAsync } from "../store/categories/category-action";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCategoriesMap,
@@ -9,6 +9,13 @@ import {
   selectIsLoading,
 } from "../store/categories/category-selector";
 import Loader from "../components/Loader";
+import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils";
+import {
+  fetchCategoriesFailed,
+  fetchCategoriesStart,
+  fetchCategoriesSuccess,
+} from "../store/categories/category-reducer";
+import toast from "react-hot-toast";
 
 function Shop() {
   const categories = useSelector(selectCategoriesMap);
@@ -19,15 +26,25 @@ function Shop() {
 
   const error = useSelector(selectError);
 
-  console.log(error);
-
   useEffect(() => {
-    dispatch(fetchCategoriesAsync());
+    const fetchCategories = async () => {
+      dispatch(fetchCategoriesStart());
+      try {
+        const categoriesArray = await getCategoriesAndDocuments();
+        dispatch(fetchCategoriesSuccess(categoriesArray));
+      } catch (error) {
+        toast.error(error.message);
+        dispatch(fetchCategoriesFailed(error));
+      }
+    };
+
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > 100) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, []);
+
+    fetchCategories();
+  }, [dispatch]);
 
   if (isLoading) return <Loader />;
   if (error)

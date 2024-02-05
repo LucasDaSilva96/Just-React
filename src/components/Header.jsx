@@ -3,8 +3,8 @@ import { signOutUser } from "../utils/firebase/firebase.utils";
 import CartSidebar from "./CartSidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../store/user/user-selector";
-import { setIsCartOpen } from "../store/cart/cart-action";
 import { cartCount, selectIsCartOpen } from "../store/cart/cart-selector";
+import { setIsCartOpen } from "../store/cart/cart-reducer";
 
 function Header() {
   const currentUser = useSelector(selectCurrentUser);
@@ -56,7 +56,7 @@ function Header() {
         )}
         <div
           className="text-lg transition-all z-[150] cursor-pointer"
-          onClick={() => setIsCartOpen(dispatch)}
+          onClick={() => dispatch(setIsCartOpen())}
         >
           <div className="relative">
             <svg

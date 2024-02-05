@@ -13,9 +13,10 @@ import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
 } from "./utils/firebase/firebase.utils";
-import { setCurrentUser } from "./store/user/user-action";
+
 import { useDispatch } from "react-redux";
 import PageNotFound from "./components/PageNotFound";
+import { setCurrentUser } from "./store/user/user-reducer";
 
 const router = createBrowserRouter([
   {
@@ -68,7 +69,15 @@ function App() {
         createUserDocumentFromAuth(user);
       }
 
-      setCurrentUser(user, dispatch);
+      const pickedUser = user
+        ? (({ accessToken, displayName, email }) => ({
+            accessToken,
+            displayName,
+            email,
+          }))(user)
+        : null;
+
+      dispatch(setCurrentUser(pickedUser));
     });
 
     return unsubscribe;

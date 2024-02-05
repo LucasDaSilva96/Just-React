@@ -2,9 +2,8 @@ import Button from "./Button";
 import CartItemSidebar from "./CartItemSidebar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsCartOpen } from "../store/cart/cart-action";
-import { CART_ACTION_TYPES } from "../store/cart/cart-types";
 import { cartTotal } from "../store/cart/cart-selector";
+import { clearCart, setIsCartOpen } from "../store/cart/cart-reducer";
 
 function CartSidebar({ slide }) {
   const navigate = useNavigate();
@@ -13,11 +12,11 @@ function CartSidebar({ slide }) {
 
   function handleClick() {
     navigate("checkout");
-    setIsCartOpen(dispatch);
+    dispatch(setIsCartOpen());
   }
 
   function handleClearCart() {
-    dispatch({ type: CART_ACTION_TYPES.SET_CART_EMPTY });
+    dispatch(clearCart());
   }
 
   return (

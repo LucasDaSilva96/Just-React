@@ -5,6 +5,7 @@ import { addCartItem, removeItem } from "../store/cart/cart-action";
 
 function CartItemSidebar() {
   const cartItems = useSelector(cartItemsArray);
+  console.log(cartItems);
 
   if (cartItems?.length < 1)
     return <h1 className="text-center text-2xl">Your cart is empty</h1>;

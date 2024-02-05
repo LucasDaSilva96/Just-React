@@ -1,6 +1,6 @@
-import { addCartItem } from "../store/cart/cart-action";
+import { addItemToCart } from "../store/cart/cart-reducer";
 import { cartItemsArray } from "../store/cart/cart-selector";
-import { CART_ACTION_TYPES } from "../store/cart/cart-types";
+
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,10 +24,7 @@ function ShopItemBox({ data }) {
       <Button
         buttonType="inverted"
         onClick={() => {
-          dispatch({
-            type: CART_ACTION_TYPES.SET_CART_ITEMS,
-            payload: addCartItem(cartItems, data),
-          });
+          dispatch(addItemToCart(data));
         }}
       >
         Add to cart

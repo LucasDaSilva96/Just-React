@@ -3,11 +3,6 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { cartItemsArray, cartTotal } from "../store/cart/cart-selector";
-import {
-  addCartItem,
-  removeItem,
-  removeSelectedItem,
-} from "../store/cart/cart-action";
 
 function CheckOut() {
   const navigate = useNavigate();
@@ -30,13 +25,7 @@ function CheckOut() {
       <h1 className="font-black text-3xl text-center pb-3">Checkout</h1>
       <div className=" max-h-[70dvh] overflow-y-scroll">
         {cartItems.map((item) => (
-          <ShopItemCheckOutBox
-            item={item}
-            addItemToCart={addCartItem}
-            removeItemFromCart={removeItem}
-            removeSelectedCartItem={removeSelectedItem}
-            key={item.id}
-          />
+          <ShopItemCheckOutBox item={item} key={item.id} />
         ))}
       </div>
       <h2 className=" capitalize font-black text-xl py-4 underline">
