@@ -3,6 +3,8 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { cartItemsArray, cartTotal } from "../store/cart/cart-selector";
+import PaymentForm from "../components/payment-form/PaymentForm";
+import React from "react";
 
 function CheckOut() {
   const navigate = useNavigate();
@@ -21,17 +23,22 @@ function CheckOut() {
     );
 
   return (
-    <div className="px-4 flex flex-col ">
+    <React.Fragment>
       <h1 className="font-black text-3xl text-center pb-3">Checkout</h1>
-      <div className=" max-h-[70dvh] overflow-y-scroll">
-        {cartItems.map((item) => (
-          <ShopItemCheckOutBox item={item} key={item.id} />
-        ))}
+      <div className="w-full flex flex-wrap justify-around py-2">
+        <div className="px-4 flex flex-col min-w-[375px] ">
+          <div className=" max-h-[60dvh] overflow-y-scroll">
+            {cartItems.map((item) => (
+              <ShopItemCheckOutBox item={item} key={item.id} />
+            ))}
+          </div>
+          <h2 className=" capitalize font-black text-xl py-4 underline">
+            Amount to pay: ${totalCartPrice}
+          </h2>
+        </div>
+        <PaymentForm />
       </div>
-      <h2 className=" capitalize font-black text-xl py-4 underline">
-        Amount to pay: ${totalCartPrice}
-      </h2>
-    </div>
+    </React.Fragment>
   );
 }
 

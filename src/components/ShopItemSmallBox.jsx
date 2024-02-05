@@ -12,11 +12,11 @@ function ShopItemSmallBox({ item, addItemToCart, removeItemFromCart }) {
           <p className="text-center text-lg font-bold">{price}$</p>
         </div>
         <div className="flex items-center ml-auto">
-          <Increase_DecreaseItemButton item={item} handler={removeItemFromCart}>
+          <Increase_DecreaseItemButton item={item}>
             -
           </Increase_DecreaseItemButton>
           <p className="py-1 px-2 bg-white ">{quantity}</p>
-          <Increase_DecreaseItemButton item={item} handler={addItemToCart}>
+          <Increase_DecreaseItemButton item={item} type="add">
             +
           </Increase_DecreaseItemButton>
         </div>

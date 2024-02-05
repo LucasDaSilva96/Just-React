@@ -1,8 +1,5 @@
 import { useDispatch } from "react-redux";
-import {
-  addItemToCart,
-  removeSelectedItemFromCart,
-} from "../store/cart/cart-reducer";
+import { addItemToCart, removeItemFromCart } from "../store/cart/cart-reducer";
 
 function Increase_DecreaseItemButton({ item, children, type }) {
   const dispatch = useDispatch();
@@ -11,7 +8,7 @@ function Increase_DecreaseItemButton({ item, children, type }) {
       onClick={() =>
         type === "add"
           ? dispatch(addItemToCart(item))
-          : dispatch(removeSelectedItemFromCart(item))
+          : dispatch(removeItemFromCart(item))
       }
       className={
         children === "+"

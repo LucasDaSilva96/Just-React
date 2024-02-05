@@ -17,11 +17,13 @@ import {
 import { useDispatch } from "react-redux";
 import PageNotFound from "./components/PageNotFound";
 import { setCurrentUser } from "./store/user/user-reducer";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
