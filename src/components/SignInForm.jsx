@@ -58,6 +58,7 @@ function SignInForm() {
         <FormInputField
           placeholder="Email*"
           required
+          autoComplete="email"
           type="email"
           value={email}
           name="email"
@@ -67,6 +68,7 @@ function SignInForm() {
         <FormInputField
           placeholder="Password*"
           required
+          autoComplete="current-password"
           type="password"
           value={password}
           name="password"

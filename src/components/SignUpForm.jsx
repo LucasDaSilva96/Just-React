@@ -72,6 +72,7 @@ function SignUpForm() {
         <FormInputField
           placeholder="Display name*"
           required
+          autoComplete="given-name"
           type="text"
           onChange={handleChange}
           name="displayName"
@@ -82,6 +83,7 @@ function SignUpForm() {
         <FormInputField
           placeholder="Email*"
           required
+          autoComplete="email"
           type="email"
           onChange={handleChange}
           name="email"
@@ -92,6 +94,7 @@ function SignUpForm() {
         <FormInputField
           placeholder="Password*"
           required
+          autoComplete="off"
           type="password"
           name="password"
           value={password}
@@ -101,6 +104,7 @@ function SignUpForm() {
         <FormInputField
           placeholder="Confirm Password*"
           required
+          autoComplete="off"
           type="password"
           name="confirmPassword"
           value={confirmPassword}

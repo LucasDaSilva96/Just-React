@@ -3,7 +3,7 @@ import SignUpForm from "../components/SignUpForm";
 
 function SignIn() {
   return (
-    <section className="w-full max-w-[1200px] flex items-center justify-evenly flex-wrap px-4 py-4">
+    <section className="w-full flex items-center justify-evenly flex-wrap px-4 py-4">
       <SignInForm />
       <SignUpForm />
     </section>
