@@ -21,7 +21,7 @@ function CartSidebar({ slide }) {
 
   return (
     <aside
-      className={`absolute top-0 right-0 transition-all backdrop-blur-2xl w-[375px] h-[100dvh] z-[100] bg-[#c9d6c9] ${
+      className={`absolute top-0 right-0 transition-all backdrop-blur-2xl w-[375px] h-[100dvh] z-[100] bg-neutral-100  ${
         !slide ? "translate-x-[1200px]" : "translate-x-0"
       } flex flex-col gap-4 overflow-y-scroll justify-between `}
     >
@@ -48,3 +48,5 @@ function CartSidebar({ slide }) {
 }
 
 export default CartSidebar;
+
+// bg-[#c9d6c9]

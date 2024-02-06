@@ -16,6 +16,7 @@ function PaymentForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+
   const paymentHandler = async (e) => {
     e.preventDefault();
 
@@ -41,8 +42,6 @@ function PaymentForm() {
     });
 
     setIsLoading(false);
-    navigate("amount");
-    dispatch(clearCart());
 
     if (paymentResult.error) {
       toast.error(paymentResult.error);
@@ -51,6 +50,10 @@ function PaymentForm() {
         toast.success("Payment Successful");
       }
     }
+    dispatch(clearCart());
+    navigate(`/confirmation/${amount}`, {
+      state: { currentUser: currentUser ? currentUser : "Guest" },
+    });
   };
 
   return (
@@ -61,7 +64,8 @@ function PaymentForm() {
       <Form className="flex flex-col gap-12" onSubmit={paymentHandler}>
         <CardElement className="py-2 border-b-2 border-black" />
         <Button buttonType="inverted" isLoading={isLoading}>
-          Pay now: <span className="underline font-black">${amount}</span>
+          Pay now:{" "}
+          <span className=" ml-2 underline font-black"> ${amount}</span>
         </Button>
       </Form>
     </div>

@@ -21,7 +21,7 @@ function ScrollToTopButton() {
     <div
       role="button"
       onClick={handleScroll}
-      className="bg-[#000000] rounded-[50%] py-2 px-2 fixed z-20 bottom-8 right-4 cursor-pointer"
+      className="bg-[#000000] rounded-[50%] py-2 px-2 fixed z-20 bottom-14 right-4 cursor-pointer"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

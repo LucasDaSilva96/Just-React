@@ -55,12 +55,10 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <CheckOut />,
-        children: [
-          {
-            path: ":confirmation",
-            element: <PayConfirmation />,
-          },
-        ],
+      },
+      {
+        path: "confirmation/:information",
+        element: <PayConfirmation />,
       },
     ],
   },
