@@ -41,7 +41,7 @@ function PaymentForm() {
     });
 
     setIsLoading(false);
-    navigate("/confirmation");
+    navigate("amount");
     dispatch(clearCart());
 
     if (paymentResult.error) {
