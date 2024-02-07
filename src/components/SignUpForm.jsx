@@ -32,12 +32,11 @@ function SignUpForm() {
 
     try {
       setIsLoading(true);
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      await createUserDocumentFromAuth(user, { displayName });
+      const res = await createAuthUserWithEmailAndPassword(email, password);
+      await createUserDocumentFromAuth(res.user, {
+        displayName: formField.displayName,
+      });
+      // await res.user.updateProfile({ displayName: formField.displayName });
 
       toast.success("Account successfully created");
       resetFormFields();
@@ -45,7 +44,7 @@ function SignUpForm() {
       if (error.code === "auth/email-already-in-use") {
         toast.error("Cannot create user, email already in use");
       } else {
-        toast.error(error.code.split("/")[1]);
+        toast.error(error.code);
       }
     } finally {
       setIsLoading(false);

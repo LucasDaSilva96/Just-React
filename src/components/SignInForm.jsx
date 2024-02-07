@@ -8,6 +8,7 @@ import {
 } from "../utils/firebase/firebase.utils";
 import toast from "react-hot-toast";
 import Loader from "./Loader";
+import { redirect } from "react-router-dom";
 
 const defaultFormFields = {
   email: "",
@@ -36,7 +37,7 @@ function SignInForm() {
 
     try {
       setIsLoading(true);
-      const { user } = await signInWith_EmailAndPassword(email, password);
+      const user = await signInWith_EmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       toast.error(error.code.split("/")[1]);

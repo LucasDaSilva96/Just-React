@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../store/user/user-selector";
 import { cartCount, selectIsCartOpen } from "../store/cart/cart-selector";
 import { setIsCartOpen } from "../store/cart/cart-reducer";
+import Button from "./Button";
 
 function Header() {
   const currentUser = useSelector(selectCurrentUser);
@@ -46,12 +47,10 @@ function Header() {
             Sign in
           </NavLink>
         ) : (
-          <NavLink
-            to="auth"
-            className="text-lg transition-all hover:underline"
-            onClick={signOutHandler}
-          >
-            Sign out
+          <NavLink to="auth" className="text-lg transition-all">
+            <Button buttonType="danger" onClick={signOutHandler}>
+              Sign out
+            </Button>
           </NavLink>
         )}
         <div

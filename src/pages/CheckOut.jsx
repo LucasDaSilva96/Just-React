@@ -8,7 +8,6 @@ import React from "react";
 
 function CheckOut() {
   const navigate = useNavigate();
-
   const totalCartPrice = useSelector(cartTotal);
   const cartItems = useSelector(cartItemsArray);
 
