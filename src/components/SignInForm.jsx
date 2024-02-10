@@ -2,7 +2,6 @@ import { useState } from "react";
 import FormInputField from "./FormInputField";
 import Button from "./Button";
 import {
-  createUserDocumentFromAuth,
   signInWithGooglePopup,
   signInWith_EmailAndPassword,
 } from "../utils/firebase/firebase.utils";
@@ -37,7 +36,7 @@ function SignInForm() {
 
     try {
       setIsLoading(true);
-      const user = await signInWith_EmailAndPassword(email, password);
+      const { user } = await signInWith_EmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       toast.error(error.code.split("/")[1]);

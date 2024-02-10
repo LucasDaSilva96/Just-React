@@ -12,11 +12,10 @@ function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
   const amount = useSelector(cartTotal);
-  const { displayName } = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  console.log(displayName);
   const paymentHandler = async (e) => {
     e.preventDefault();
 
@@ -36,7 +35,7 @@ function PaymentForm() {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: displayName ? displayName : "Guest",
+          name: currentUser?.displayName ? currentUser.displayName : "Guest",
         },
       },
     });
@@ -52,7 +51,11 @@ function PaymentForm() {
     }
     dispatch(clearCart());
     navigate(`/confirmation/${amount}`, {
-      state: { currentUser: displayName ? displayName : "Guest" },
+      state: {
+        currentUser: currentUser?.displayName
+          ? currentUser.displayName
+          : "Guest",
+      },
     });
   };
 

@@ -1,11 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-import { signOutUser } from "../utils/firebase/firebase.utils";
+
 import CartSidebar from "./CartSidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../store/user/user-selector";
 import { cartCount, selectIsCartOpen } from "../store/cart/cart-selector";
 import { setIsCartOpen } from "../store/cart/cart-reducer";
-import Button from "./Button";
 
 function Header() {
   const currentUser = useSelector(selectCurrentUser);
@@ -15,10 +14,6 @@ function Header() {
   const dispatch = useDispatch();
 
   const quantity = useSelector(cartCount);
-
-  const signOutHandler = async () => {
-    await signOutUser();
-  };
 
   return (
     <header className="w-full flex items-center py-2 bg-[#a3b18a6c] px-2 shadow-md z-40 fixed backdrop-blur-md">
@@ -48,9 +43,7 @@ function Header() {
           </NavLink>
         ) : (
           <NavLink to="auth" className="text-lg transition-all">
-            <Button buttonType="danger" onClick={signOutHandler}>
-              Sign out
-            </Button>
+            Dashboard
           </NavLink>
         )}
         <div

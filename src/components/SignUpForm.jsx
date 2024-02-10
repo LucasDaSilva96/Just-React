@@ -7,6 +7,7 @@ import {
 import FormInputField from "./FormInputField";
 import Loader from "./Loader";
 import Button from "./Button";
+import { updateProfile } from "firebase/auth";
 
 const defaultFormFields = {
   displayName: "",
@@ -36,17 +37,18 @@ function SignUpForm() {
       await createUserDocumentFromAuth(res.user, {
         displayName: formField.displayName,
       });
-      // await res.user.updateProfile({ displayName: formField.displayName });
+      await res.user.updateProfile({ displayName: formField.displayName });
+      await res.user.reload();
 
       toast.success("Account successfully created");
-      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         toast.error("Cannot create user, email already in use");
       } else {
-        toast.error(error.code);
+        toast.error(error);
       }
     } finally {
+      resetFormFields();
       setIsLoading(false);
     }
   };
