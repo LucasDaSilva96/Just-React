@@ -16,10 +16,21 @@ function PaymentForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [CardElementValidation, setCardElementValidation] = useState(true);
+
+  const cardElementHandler = ({ error }) => {
+    if (error) {
+      setCardElementValidation(error.message);
+    } else {
+      setCardElementValidation(false);
+    }
+  };
+
   const paymentHandler = async (e) => {
     e.preventDefault();
 
     if (!stripe || !elements) return;
+
     setIsLoading(true);
     const response = await fetch("/.netlify/functions/create-payment-intent", {
       method: "post",
@@ -27,7 +38,12 @@ function PaymentForm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ amount: amount * 100 }),
-    }).then((res) => res.json());
+    })
+      .then((res) => res.json())
+      .catch((error) => {
+        toast.error(error.message);
+        return;
+      });
 
     const { client_secret } = response.paymentIntent;
 
@@ -49,14 +65,16 @@ function PaymentForm() {
         toast.success("Payment Successful");
       }
     }
-    dispatch(clearCart());
-    navigate(`/confirmation/${amount}`, {
-      state: {
-        currentUser: currentUser?.displayName
-          ? currentUser.displayName
-          : "Guest",
-      },
-    });
+    if (!CardElementValidation) {
+      dispatch(clearCart());
+      navigate(`/confirmation/${amount}`, {
+        state: {
+          currentUser: currentUser?.displayName
+            ? currentUser.displayName
+            : "Guest",
+        },
+      });
+    }
   };
 
   return (
@@ -65,11 +83,22 @@ function PaymentForm() {
         Credit card payment
       </h3>
       <Form className="flex flex-col gap-12" onSubmit={paymentHandler}>
-        <CardElement className="py-2 border-b-2 border-black" />
-        <Button buttonType="inverted" isLoading={isLoading}>
-          Pay now:{" "}
-          <span className=" ml-2 underline font-black"> ${amount}</span>
-        </Button>
+        <CardElement
+          className="py-2 border-b-2 border-black"
+          onChange={cardElementHandler}
+        />
+        {!CardElementValidation ? (
+          <Button
+            buttonType="inverted"
+            isLoading={isLoading}
+            disabled={Boolean(CardElementValidation)}
+          >
+            Pay now:{" "}
+            <span className=" ml-2 underline font-black"> ${amount}</span>
+          </Button>
+        ) : (
+          <p className="text-center text-red-600">{CardElementValidation}</p>
+        )}
       </Form>
     </div>
   );
